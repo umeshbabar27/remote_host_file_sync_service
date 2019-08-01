@@ -1,0 +1,12 @@
+2019-07-16 05:35:02,530 - __main__ - INFO - >>>>> Starting development server at http://localhost:58789/ <<<<<
+2019-07-16 05:35:02,732 - werkzeug - INFO -  * Running on http://127.0.0.1:58789/ (Press CTRL+C to quit)
+2019-07-16 05:35:02,745 - werkzeug - INFO -  * Restarting with stat
+2019-07-16 05:35:04,291 - __main__ - INFO - >>>>> Starting development server at http://localhost:58789/ <<<<<
+2019-07-16 05:35:04,297 - werkzeug - WARNING -  * Debugger is active!
+2019-07-16 05:35:04,317 - werkzeug - INFO -  * Debugger PIN: 269-867-931
+2019-07-16 06:14:04,798 - __main__ - INFO - >>>>> Starting development server at http://localhost:58789/ <<<<<
+2019-07-16 06:14:04,804 - werkzeug - INFO -  * Running on http://127.0.0.1:58789/ (Press CTRL+C to quit)
+2019-07-16 06:14:04,804 - werkzeug - INFO -  * Restarting with stat
+2019-07-16 06:14:06,482 - __main__ - INFO - >>>>> Starting development server at http://localhost:58789/ <<<<<
+2019-07-16 06:14:06,488 - werkzeug - WARNING -  * Debugger is active!
+2019-07-16 06:14:06,489 - werkzeug - INFO -  * Debugger PIN: 269-867-931

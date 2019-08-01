@@ -1,0 +1,87 @@
+#!/bin/sh
+# description: rhfsservice
+
+### BEGIN INIT INFO
+# Provides: rhfsservice
+# Default-Start: 3 4 5
+# Default-Stop: 0 1 2 6
+### END INIT INFO
+if [ -f /etc/init.d/functions ]; then
+    . /etc/init.d/functions
+    LOG_SUCCESS=success
+    LOG_FAILURE=failure
+elif [ -f /lib/lsb/init-functions ]; then
+    . /lib/lsb/init-functions
+    LOG_SUCCESS=log_success_msg
+    LOG_FAILURE=log_failure_msg
+else
+    echo "Unknown platform"
+    exit 1
+fi
+
+rhfs_app=/usr/bin/ecs_app
+stop() {
+        echo -e 'Stopping rhfsservice:\n '
+        pidlist=`ps -ef | grep $rhfs_app | grep -v "grep" |awk '{print $2}'`
+        #echo -e "$pidlist\n"
+	if [ ! -z "$pidlist" ]; then
+		for pid in $pidlist; do
+			echo -e "Stopping pid: $pid\n"
+			kill -9 $pid
+		done
+		return 0
+	else
+		echo -e "Service not running\n"
+		return 1
+	fi
+}
+
+start() {
+
+	if [ ! -d /usr/lib/python2.7/site-packages/remote_host_file_sync_service-1.0.0-py2.7.egg ]; then
+                echo -e 'Need to install remote_host_file_sync_service'
+		easy_install -H=None /opt/plugins/remote_host_file_sync_service-1.0.0-py2.7.egg
+        fi
+	echo -e "Starting service: \n"
+        pidlist=`ps -ef | grep $ecs_app | grep -v "grep" |awk '{print $2}'`
+        if [ -z "$pidlist" ];
+        then
+                cd /opt/logs; $ecs_app &
+                if [ $? -eq 0 ]; then
+                        echo -e "Started\n"
+                        return 0
+                else
+                        echo -e "Failed to start\n"
+                        return 1
+                fi
+        else
+                echo -e "Service is already running\n"
+                return 1
+        fi
+
+
+}
+
+case $1 in
+        restart)
+                stop
+                start
+                ;;
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        status)
+
+        pidlist=`ps -ef | grep $rhfs_app | grep -v "grep" |awk '{print $2}'`
+        if [ -z "$pidlist" ];
+        then
+		echo -e "Stopped"	
+	else
+		echo -e "Running"	
+	fi
+                ;;
+esac
+
